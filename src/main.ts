@@ -1,13 +1,14 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import VueWorker from 'vue-worker'
 // import firebase from 'firebase/app'
 // import 'firebase/database'
 
 import App from './App.vue'
 import router from './router'
 
-import { initializeApp, applicationDefault, cert } from 'firebase-admin/app'
-import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore'
+// import { initializeApp, applicationDefault, cert } from 'firebase-admin/app'
+// import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore'
 // firebase.initializeApp({
 //     apiKey: "AIzaSyDIP8yeFsgHm30xuKlxZ4kOSEl3Y-CY3Ic",
 //     authDomain: "jabrixofthings-c1c16.firebaseapp.com",
@@ -19,9 +20,9 @@ import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore'
 //     measurementId: "G-W9YC90TVDY"
 // })
 
-initializeApp({
-    credential: applicationDefault()
-})
+// initializeApp({
+//     credential: applicationDefault()
+// })
 
 
 import './assets/main.css'
@@ -29,10 +30,11 @@ import './assets/main.css'
 
 
 const app = createApp(App)
-export const db = getFirestore()
+// export const db = getFirestore()
 
 app.use(createPinia())
 app.use(router)
+app.use(VueWorker)
 
 app.mount('#app')
 

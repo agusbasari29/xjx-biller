@@ -1,85 +1,46 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts" setup>
+import { ref, onMounted } from 'vue'
+import { v4 as uuidv4 } from 'uuid'
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from '@/firebase'
+
+/*
+
+*/
+
+const clients = ref([
+  /*  {
+      id: 'id',
+      name: 'name',
+      price: 10000,
+      status: 'offline',
+      lastOnline: '2023-03-02T'
+    },
+  */
+])
+
+onMounted(async () => {
+  const querySnapshoot = await getDocs(collection(db, 'xjx - biller'))
+  let fbXjxBiller = []
+  querySnapshoot.forEach((doc) => {
+
+  })
+})
+
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div class="field is-grouped">
+    <p class="control is-expanded">
+      <input type="text" class="input" placeholder="Find">
+    </p>
+    <p class="control">
+      <a class="button is-info">Search</a>
+    </p>
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
+@import 'bulma/css/bulma.min.css';
 </style>
